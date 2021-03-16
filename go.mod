@@ -1,3 +1,3 @@
-module github.com/kidy-go/utils v.0.0.1
+module github.com/kidy-go/utils
 
 go 1.14
