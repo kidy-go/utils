@@ -54,3 +54,20 @@ func IsEmpty(val interface{}) bool {
 		return false
 	}
 }
+
+func InArray(needle interface{}, haystack interface{}) (index int, exists bool) {
+	index, exists = -1, false
+
+	switch reflect.TypeOf(haystack).Kind() {
+	case reflect.Slice, reflect.Array:
+		s := reflect.ValueOf(haystack)
+		for i := 0; i < s.Len(); i++ {
+			if reflect.DeepEqual(needle, s.Index(i).Interface()) == true {
+				index = i
+				exists = true
+				return
+			}
+		}
+	}
+	return index, exists
+}
